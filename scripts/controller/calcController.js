@@ -1,31 +1,56 @@
 class CalcController{
     constructor(){
-        this._displayCalc = "0";
+        this._local = 'pt-BR';
+        this._displayCalcEl = document.querySelector("#display");
+        this._dateEl =document.querySelector("#data");
+        this._timeEl =document.querySelector("#hora");
         this._currentDate;
         this.initialize();
     }
     
     initialize(){
-        var displayCalcEl = document.querySelector("#display");
-        var dateEl =document.querySelector("#data");
-        var timeEl =document.querySelector("#hora");
+      this.setDisplayDateTime();
 
-        displayCalcEl.innerHTML = "4.789";
-        dateEl.innerHTML = "14/09/2023";
-        timeEl.innerHTML = "19:55";
+      setInterval(() =>{
+       this.setDisplayDateTime();
+      },1000)
+      
+    }
+
+    setDisplayDateTime(){
+        this.displayDate = this.dataAtual.toLocaleDateString(this._local)
+        this.displayTime = this.dataAtual.toLocaleTimeString(this._local)
     }
 
     // Metodo para retornar um valor ao atributo
     get displayCalc(){
-        return this._displayCalc;
+        return this._displayCalcEl.innerHTML;
     }
     // Metodo para enviar um valor ao atributo
     set displayCalc(valor){
-        this.displayCalc = valor; 
+        this._displayCalcEl.innerHTML = valor; 
+    }
+
+    get displayTime(){
+        this._timeEl.innerHTML;
+    }
+
+    set displayTime(valor){
+        this._timeEl.innerHTML = valor;
+    }
+
+
+    get displayDate(){
+        this._dateEl.innerHTML;
+    }
+
+    
+    set displayDate(valor){
+        this._dateEl.innerHTML = valor;
     }
 
     get dataAtual(){
-        return this._currentDate;
+        return  new Date();
     }
     set dataAtual(valor){
         this._dataAtual = valor;
