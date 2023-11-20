@@ -250,7 +250,7 @@ class CalcController {
     }
 
     setError() {
-        this.displayCalc = Error;
+        this.displayCalc = "Error";
     }
     addDot() {
         let LastOperation = this.getLastOperation();
@@ -358,7 +358,13 @@ class CalcController {
     }
     // Metodo para enviar um valor ao atributo
     set displayCalc(valor) {
+        if(valor.toString().length > 10){
+            this.setError();
+            return false;
+        }
+
         this._displayCalcEl.innerHTML = valor;
+
     }
 
     get displayTime() {
